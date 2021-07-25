@@ -16,32 +16,15 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {HOME_TABS} from './screen-name';
 import {responsive} from '@/utils';
 import {color} from '@/theme';
-import {Home, Category, History, Following, Me} from '@/screens';
 import {palette} from '@/theme/palette';
-import {AuthStack} from '@/navigation/stack';
 import {useIsLoggedIn} from '@/hooks/useIsLoggedIn';
 
 const BOTTOM_TAB_BAR_HEIGHT = responsive.getHeight(50);
 const Tab = createBottomTabNavigator();
 
-// const ICONS = Object.freeze({
-//   [HOME_TABS.HOME]: ImageSource.HomeIcon,
-//   [HOME_TABS.CATEGORY]: ImageSource.CategoryTabbarIcon,
-//   [HOME_TABS.SCAN]: ImageSource.ScanTabbarIcon,
-//   [HOME_TABS.CART]: ImageSource.CartTabbarIcon,
-//   [HOME_TABS.ACCOUNT]: ImageSource.ProfileTabbarIcon,
-// });
-
-const TAB_BAR_NAMES = Object.freeze({
-  [HOME_TABS.HOME]: 'Trang chủ',
-  [HOME_TABS.CATEGORY]: 'Chuyên mục',
-  [HOME_TABS.HISTORY]: 'Lịch sử',
-  [HOME_TABS.FOLLOW]: 'Theo dõi',
-  [HOME_TABS.ACCOUNT]: 'Tôi',
-});
+const TAB_BAR_NAMES = Object.freeze({});
 
 const styles = StyleSheet.create({
   badge: {
@@ -126,46 +109,7 @@ const TabBarButton = props => {
           };
           const barItem = () => {
             switch (index) {
-              case 0:
-                return (
-                  <TabBarItem
-                    isFocused={isFocused}
-                    name={TAB_BAR_NAMES[route.name]}
-                    icon={'home'}
-                  />
-                );
-              case 1:
-                return (
-                  <TabBarItem
-                    isFocused={isFocused}
-                    name={TAB_BAR_NAMES[route.name]}
-                    icon={'menu'}
-                  />
-                );
-              case 2:
-                return (
-                  <TabBarItem
-                    isFocused={isFocused}
-                    name={TAB_BAR_NAMES[route.name]}
-                    icon={'clock-time-five'}
-                  />
-                );
-              case 3:
-                return (
-                  <TabBarItem
-                    isFocused={isFocused}
-                    name={TAB_BAR_NAMES[route.name]}
-                    icon={'star'}
-                  />
-                );
-              case 4:
-                return (
-                  <TabBarItem
-                    isFocused={isFocused}
-                    name={TAB_BAR_NAMES[route.name]}
-                    icon={'account'}
-                  />
-                );
+              //Tab bar item here
               default:
                 return null;
             }
@@ -188,23 +132,14 @@ const TabBarButton = props => {
     </SafeAreaView>
   );
 };
-
+/**
+ * All Tab bar below.
+ */
 export function MainTabBar() {
   const {isLoggedIn} = useIsLoggedIn();
 
   return (
     <Tab.Navigator tabBar={TabBarButton}>
-      <Tab.Screen name={HOME_TABS.HOME} component={Home} />
-      <Tab.Screen name={HOME_TABS.CATEGORY} component={Category} />
-      <Tab.Screen name={HOME_TABS.HISTORY} component={History} />
-      <Tab.Screen
-        name={HOME_TABS.FOLLOW}
-        component={isLoggedIn ? Following : AuthStack}
-      />
-      <Tab.Screen
-        name={HOME_TABS.ACCOUNT}
-        component={isLoggedIn ? Me : AuthStack}
-      />
     </Tab.Navigator>
   );
 }

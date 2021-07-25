@@ -3,15 +3,6 @@ import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {MainTabBar} from '@/navigation/main-tab-bar';
 
 import {screens} from '@/navigation/screen-name';
-import {
-  ChapterDetail,
-  SeeMore,
-  StoryDetail,
-  SearchScreen,
-  AllComments,
-  Login,
-  Top,
-} from '@/screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,19 +14,6 @@ export function PrimaryNavigator() {
         gestureEnabled: true,
       }}>
       <Stack.Screen name={screens.MainTabBar} component={MainTabBar} />
-      <Stack.Screen name={screens.SeeMore} component={SeeMore} />
-      <Stack.Screen name={screens.StoryDetail} component={StoryDetail} />
-      <Stack.Screen name={screens.ChapterDetail} component={ChapterDetail} />
-      <Stack.Screen name={screens.SearchScreen} component={SearchScreen} />
-      <Stack.Screen name={screens.AllComments} component={AllComments} />
-      <Stack.Screen name={screens.Top} component={Top} />
-      <Stack.Screen
-        options={{
-          stackPresentation: 'modal',
-        }}
-        name={screens.Login}
-        component={Login}
-      />
     </Stack.Navigator>
   );
 }

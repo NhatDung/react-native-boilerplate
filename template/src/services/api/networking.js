@@ -24,15 +24,11 @@ function timeout(request, duration) {
   });
 }
 
-async function backToLogin() {
-  // await removeData(UserInforKey);
-}
+async function backToLogin() {};
 
 const onError = e => {
   throw e.message;
 };
-
-const loginAgain = () => () => {};
 
 export function getWithTimeout(api, headers) {
   return timeout(get(api, headers), DEFAULT_API_CONFIG.timeout);
@@ -188,9 +184,8 @@ async function getDefaultHeaders() {
 }
 
 async function handleResponse(response) {
-  const {meta} = response;
-  if (!meta.success) {
-    if (meta.status_code === 401) {
+  if (!response.success) {
+    if (response.status_code === 401) {
       const error = {
         message: '401',
         code: 401,
@@ -204,22 +199,11 @@ async function handleResponse(response) {
     return {};
   }
 
-  if (typeof response.data.data === 'undefined') {
+  if (typeof response.data === 'object') {
     return {
       data: response.data,
-      currentPage: response?.current_page ?? undefined,
-      reachedEnd: response?.current_page === response?.last_page ?? true,
     };
   }
-
-  if (typeof response.data.data === 'object') {
-    return {
-      data: response.data.data,
-      currentPage: response.data?.current_page ?? undefined,
-      reachedEnd:
-        response.data?.current_page === response.data?.last_page ?? true,
-    };
-  }
-
+  
   return {};
 }

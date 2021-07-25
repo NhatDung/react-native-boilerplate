@@ -15,7 +15,6 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
-import {QueryClient, QueryClientProvider} from 'react-query';
 import {enableScreens} from 'react-native-screens';
 
 import {navigationRef, RootNavigator} from '../navigation';
@@ -28,22 +27,12 @@ enableScreens(true);
  */
 
 export function App() {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: true,
-        // staleTime: Infinity,
-      },
-    },
-  });
 
   return (
-    <QueryClientProvider client={queryClient}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <AppProvider>
           <RootNavigator ref={navigationRef} />
         </AppProvider>
       </SafeAreaProvider>
-    </QueryClientProvider>
   );
 }

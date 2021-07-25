@@ -1,1 +1,3 @@
-export * from './authStack';
+/**
+ * export all stack screens
+ */

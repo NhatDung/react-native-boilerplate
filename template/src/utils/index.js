@@ -6,4 +6,3 @@ export * from './storage';
 export * from './device';
 export * from './date-time-format';
 export * from './common-function';
-export * from './query-key';

@@ -8,8 +8,6 @@ export const ErrorCode = {
   WRONG_OTP: 'E0017',
 };
 
-export const LIMIT_ITEMS = 12;
-
 export const KeyStorage = {
   KEY_SEARCH_HISTORY: 'search_history',
   USER: 'user',
@@ -17,5 +15,3 @@ export const KeyStorage = {
 };
 
 export const IsIOS = Platform.OS === 'ios';
-
-export const COMMENT_MIN_LENGTH = 12;
